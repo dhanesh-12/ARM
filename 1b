@@ -1,0 +1,25 @@
+#include <lpc214x.h> // Include header for LPC214x microcontroller 
+
+definitions
+
+int main() 
+
+{ 
+
+ volatile int n, i, fact = 1; // Declare variables: n = input number, i = loop 
+
+counter, fact = result
+
+ // 'volatile' prevents compiler optimization since these may 
+
+be accessed by hardware
+
+ n = 5; // Set the number for which factorial is to be calculated
+
+ // Loop to calculate factorial (e.g., 5! = 5×4×3×2×1)
+
+ for (i = 1; i <= n; ++i) 
+
+ fact *= i; // Multiply current i with fact and store result back in fact
+
+ while (1); // Infinite loop to halt the program
