@@ -1,0 +1,21 @@
+#include <lpc214x.h> // Include the header file for LPC214x microcontroller 
+
+definitions
+
+int main(void) {
+
+ unsigned int i; // Declare loop counter variable
+
+ unsigned int sum = 0; // Initialize sum variable to store the result
+
+ // Loop to calculate the sum of the first 10 integers (1 to 10)
+
+ for (i = 1; i <= 10; i++) {
+
+ sum += i; // Add the current value of i to sum
+
+ }
+
+ while (1); // Infinite loop to halt the program after execution
+
+}
