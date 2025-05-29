@@ -1,77 +1,29 @@
-// Include the LPC213x microcontroller header file
-
 #include <LPC213x.h>
 
-// Define motor control states
-
-#define motorstop 0x0 // Motor stop state
-
-#define motorclk 0x1 // Motor clockwise rotation state
-
-#define motoraclk 0x2 // Motor counterclockwise rotation state
-
-// Function to introduce a delay
+#define motorstop 0x0
+#define motorclk  0x1
+#define motoraclk 0x2
 
 void delay(int k) {
-
- unsigned int i, j;
-
- // Nested loop to create a delay
-
- for (i = 0; i < k; i++)
-
- for (j = 0; j < 10000; j++);
-
+    unsigned int i, j;
+    for (i = 0; i < k; i++)
+        for (j = 0; j < 10000; j++);
 }
 
-// Main function
-
 int main(void) {
+    PINSEL0 = 0x00000000;
+    IODIR0 |= 0x00000003;
+    IOCLR0 = 0x00000003;
 
- // Configure pins as GPIO
+    while (1) {
+        IOSET0 = motorclk;
+        delay(100);
+        IOCLR0 = motorclk;
+        delay(10);
 
- PINSEL0 = 0x00000000;
-
- // Set P0.0 and P0.1 as output for motor control
-
- IODIR0 |= 0x00000003;
-
- // Clear P0.0 and P0.1 to ensure motor is off
-
- IOCLR0 = 0x00000003;
-
- // Infinite loop for continuous motor rotation
-
- while (1) {
-
- // Rotate motor clockwise
-
- IOSET0 = motorclk; // Set P0.0 to rotate motor clockwise
-
- delay(100); // Delay for clockwise rotation
-
- IOCLR0 = motorclk; // Clear P0.0
-
- IOSET0 = motorstop; // Set motor stop state
-
- delay(10); // Short delay
-
- IOCLR0 = motorstop; // Clear motor stop state
-
- // Rotate motor counterclockwise
-
- IOSET0 = motoraclk; // Set P0.1 to rotate motor counterclockwise
-
- delay(100); // Delay for counterclockwise rotation
-
- IOCLR0 = motoraclk; // Clear P0.1
-
- IOSET0 = motorstop; // Set motor stop state
-
- delay(10); // Short delay
-
- IOCLR0 = motorstop; // Clear motor stop state
-
- }
-
+        IOSET0 = motoraclk;
+        delay(100);
+        IOCLR0 = motoraclk;
+        delay(10);
+    }
 }
