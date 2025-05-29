@@ -1,0 +1,17 @@
+
+
+AREA LAB10, CODE, READONLY
+
+ ENTRY
+
+START
+
+ MRS r1, CPSR ; Move CPSR to r1
+
+ BIC r1, r1, #0x80 ; Clear I bit (bit 7) to enable interrupts
+
+ MSR CPSR_C, r1 ; Move r1 back to CPSR
+
+LOOP B LOOP ; Infinite loop
+
+ END
