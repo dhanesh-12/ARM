@@ -1,0 +1,65 @@
+// Include the LPC213x microcontroller header file
+
+#include <LPC213x.h>
+
+// Function to introduce a delay
+
+void delay() {
+
+ unsigned int i;
+
+ // Loop to create a delay
+
+ for (i = 0; i < 18000; i++);
+
+}
+
+// Main function
+
+int main(void) {
+
+ // Initialize LED pattern
+
+ int led = 0x00000001;
+
+ // Loop counter
+
+ int j;
+
+ // Configure pins as GPIO
+
+ PINSEL0 = 0x00000000;
+
+ // Set P0.0 to P0.3 as output for LED control
+
+ IODIR0 |= 0x0000000F;
+
+ // Clear P0.0 to P0.3 to ensure LEDs are off
+
+ IOCLR0 = 0x0000000F;
+
+ // Infinite loop for continuous LED flashing
+
+ while (1) {
+
+ // Loop to shift LED pattern
+
+ for (j = 0; j < 4; j++) {
+
+ // Set LED pattern on P0.0 to P0.3
+
+ IOSET0 = (led << j);
+
+ delay(); // Delay between LED states
+
+ // Clear LED pattern on P0.0 to P0.3
+
+ IOCLR0 = (led << j);
+
+ }
+
+ }
+
+ return 0;
+
+}
