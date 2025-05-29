@@ -1,0 +1,29 @@
+#include <lpc214x.h> // Include header for LPC214x microcontroller 
+
+definitions
+
+// Lookup table containing squares of numbers from 0 to 10
+
+unsigned int square_lookup[] = {0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100};
+
+int main(void) {
+
+ unsigned int number = 5; // Number whose square is to be found
+
+ unsigned int result; // Variable to store the square
+
+ // Check if the number is within the valid range for lookup
+
+ if (number <= 10) {
+
+ result = square_lookup[number]; // Fetch square from lookup table
+
+ } else {
+
+ result = 0; // Handle numbers out of range by setting result to 0
+
+ }
+
+ while (1); // Infinite loop to stop execution
+
+}
