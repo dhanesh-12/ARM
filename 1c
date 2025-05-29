@@ -1,0 +1,25 @@
+#include <lpc214x.h> // Include header for LPC214x microcontroller 
+
+definitions
+
+int main(void) {
+
+ // Define an array of 16-bit unsigned integers (hex values)
+
+ unsigned short array[] = {0x1000, 0x2000, 0x3000, 0x4000, 0x5000};
+
+ unsigned int sum = 0; // 32-bit variable to store the total sum
+
+ unsigned int i; // Loop counter
+
+ // Loop through the array and accumulate the sum
+
+ for (i = 0; i < 5; i++) {
+
+ sum += array[i]; // Add current array element to sum
+
+ }
+
+ while (1); // Infinite loop to halt the program
+
+}
